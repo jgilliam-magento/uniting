@@ -1,0 +1,18 @@
+{
+  "variantName": "hero-text-centered",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Top-of-page campaign message with a centered heading, supporting paragraph and primary calls to action",
+    "layout": "Single centered text column; no image on the source page, optional background image supported",
+    "elements": ["H1 heading (may contain a highlighted word)", "paragraph", "two pill CTA buttons in a row"]
+  },
+  "contentPattern": {
+    "structure": "optional first row with a background image; then one cell holding an H1 heading, a paragraph and one or more CTA links (each link alone in its own paragraph so it becomes a button)",
+    "rows": [["(optional) background image"], ["H1 heading, paragraph, CTA links"]]
+  },
+  "options": [],
+  "memberVariantIds": ["hero-text-centered"],
+  "usage": "Use for a text-led campaign or page intro message that sits directly under a banner image, typically in a dark-grey section.",
+  "reuseGuidance": "Reuse for any centered heading + paragraph + CTA intro. For a hero with a full-bleed photo behind text, use the base hero block instead."
+}

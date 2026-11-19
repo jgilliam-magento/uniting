@@ -1,0 +1,18 @@
+{
+  "variantName": "columns-text-media",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Explanatory text beside supporting infographics",
+    "layout": "Two columns on desktop (text left, media right, top-aligned); stacked on mobile with text first",
+    "elements": ["H2 heading", "paragraphs with inline links", "two stacked infographic images"]
+  },
+  "contentPattern": {
+    "structure": "one row, two cells: first cell text (H2 and paragraphs with links), second cell one or more stacked images",
+    "rows": [["H2 + paragraphs with links", "two stacked images"]]
+  },
+  "options": [],
+  "memberVariantIds": ["columns-text-media"],
+  "usage": "Use for an 'about' style section where long copy sits next to one or more stacked images.",
+  "reuseGuidance": "Reuse for text + stacked media layouts. Source order is preserved on mobile (text first), unlike the base columns block which lifts image-only columns to the top."
+}

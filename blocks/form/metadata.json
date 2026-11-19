@@ -1,0 +1,27 @@
+{
+  "variantName": "form",
+  "baseBlock": "form",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Mailing-list signup form collecting name, email and postcode",
+    "layout": "Stacked labelled fields; first and last name side by side under a shared 'Name' legend; centered Subscribe button",
+    "elements": ["Name group (first name, last name)", "email input", "postcode input", "Subscribe submit button", "required markers"]
+  },
+  "contentPattern": {
+    "structure": "one row per field with cells Label | Type | Name | Placeholder | Required | Group; a 'submit' row whose label is the button text; optional two-cell settings rows: action (submission URL), method, success (thank-you message), error",
+    "rows": [
+      ["Label", "Type", "Name", "Placeholder", "Required", "Group"],
+      ["First name", "text", "firstName", "First name", "yes", "Name"],
+      ["Last name", "text", "lastName", "Last name", "yes", "Name"],
+      ["Email", "email", "email", "Email address", "yes", ""],
+      ["Postcode", "text", "postcode", "Postcode", "yes", ""],
+      ["Subscribe", "submit", "", "", "", ""],
+      ["action", "https://example.com/submit"],
+      ["success", "Thanks for signing up to Fair Treatment."]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": ["form"],
+  "usage": "Use for the 'Sign up to Fair Treatment' mailing-list form, placed beside default-content heading and intro text in a magenta split section.",
+  "reuseGuidance": "Reuse for any simple contact or signup form. Supported field types: text, email, tel, number, url, date, textarea, checkbox, select (options comma separated in the Placeholder cell), hidden, submit. Without an action row the form validates and shows the success message but does not send data."
+}

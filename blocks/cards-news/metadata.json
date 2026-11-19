@@ -1,0 +1,19 @@
+{
+  "variantName": "cards-news",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Latest news / updates listing",
+    "layout": "Three-column grid of cards on desktop (two on tablet, one on mobile); square image above the text",
+    "elements": ["thumbnail image", "linked H3 title", "publish date"]
+  },
+  "contentPattern": {
+    "structure": "first cell: image; second cell: linked H3 title and a date paragraph",
+    "rows": [["image", "linked H3 title, date"]],
+    "notes": "one row per news item"
+  },
+  "options": [],
+  "memberVariantIds": ["cards-news"],
+  "usage": "Use for an 'Updates' or latest-news list of article teasers.",
+  "reuseGuidance": "Reuse for any article/news teaser grid. For promo tiles with text over a photo, use cards-promo-overlay."
+}

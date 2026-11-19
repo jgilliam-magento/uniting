@@ -1,0 +1,102 @@
+/*
+ * cards-promo-overlay
+ * Source: .wp-block-columns > .wp-block-column > .wp-block-cover.p-5
+ * Tiles: min-height 450px, padding 48px, content bottom-aligned, 32px gap,
+ * full-bleed photo with black overlay at 60% opacity.
+ */
+.cards-promo-overlay > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.cards-promo-overlay .cards-promo-overlay-card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  min-height: 450px;
+  padding: 48px;
+  overflow: hidden;
+  color: var(--brand-white);
+}
+
+.cards-promo-overlay .cards-promo-overlay-card-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  line-height: 0;
+}
+
+.cards-promo-overlay .cards-promo-overlay-card-image picture,
+.cards-promo-overlay .cards-promo-overlay-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* source .wp-block-cover__background: black, opacity 0.6 */
+.cards-promo-overlay .cards-promo-overlay-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--brand-black);
+  opacity: 0.6;
+}
+
+.cards-promo-overlay .cards-promo-overlay-card-body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: left;
+}
+
+.cards-promo-overlay .cards-promo-overlay-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+.cards-promo-overlay .cards-promo-overlay-card-body h1,
+.cards-promo-overlay .cards-promo-overlay-card-body h2,
+.cards-promo-overlay .cards-promo-overlay-card-body h3 {
+  margin: 0 0 8px;
+  color: var(--brand-white);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48px;
+}
+
+.cards-promo-overlay .cards-promo-overlay-card-body p {
+  margin: 0 0 16px;
+  color: var(--brand-white);
+  font-size: var(--body-font-size-l);
+  line-height: 30px;
+}
+
+.cards-promo-overlay .cards-promo-overlay-card-body p.button-wrapper {
+  margin: 0;
+  font-size: var(--body-font-size-m);
+  line-height: 24px;
+}
+
+main .cards-promo-overlay a.button.secondary:any-link {
+  border-color: var(--brand-white);
+  color: var(--brand-white);
+  text-decoration: none;
+}
+
+main .cards-promo-overlay a.button.secondary:hover,
+main .cards-promo-overlay a.button.secondary:focus-visible {
+  text-decoration: underline;
+}
+
+@media (width >= 900px) {
+  .cards-promo-overlay > ul {
+    grid-template-columns: none;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+  }
+}

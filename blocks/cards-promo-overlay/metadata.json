@@ -1,0 +1,19 @@
+{
+  "variantName": "cards-promo-overlay",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Side-by-side campaign promo tiles, each with text and a CTA overlaid on a darkened full-bleed photo",
+    "layout": "Two equal tiles in a row on desktop, stacked on mobile; photo fills each tile behind the text",
+    "elements": ["background photo", "H2/H3 title", "paragraph", "outlined CTA button"]
+  },
+  "contentPattern": {
+    "structure": "first cell: background image; second cell: heading, paragraph and a CTA link",
+    "rows": [["image", "heading, paragraph, CTA link"]],
+    "notes": "one row per tile"
+  },
+  "options": [],
+  "memberVariantIds": ["cards-promo-overlay"],
+  "usage": "Use for two (or more) promotional tiles that pair a photo backdrop with a short call to action.",
+  "reuseGuidance": "Reuse whenever promo text sits on top of its photo. For image-above-text cards use cards-news or the base cards block."
+}

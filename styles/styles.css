@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -10,64 +12,13 @@
  * governing permissions and limitations under the License.
  */
 
-:root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
-
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
-
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
-
-  /* nav height */
-  --nav-height: 64px;
-}
-
-/* fallback fonts */
+/* fallback font, metrics close to Work Sans */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
+  font-family: work-sans-fallback;
+  size-adjust: 111%;
+  ascent-override: 84%;
+  descent-override: 22%;
   src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
 }
 
 body {
@@ -77,7 +28,8 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: var(--body-line-height);
+  -webkit-font-smoothing: antialiased;
 }
 
 body.appear {
@@ -98,23 +50,24 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/* typography (source: Work Sans 800 headings, 400 body) */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 8px;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: var(--heading-font-weight);
+  line-height: 1.2;
   scroll-margin: 40px;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
+h3 { font-size: var(--heading-font-size-l); line-height: 1.25; }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
@@ -125,8 +78,8 @@ ol,
 ul,
 pre,
 blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 code,
@@ -138,12 +91,16 @@ pre {
   padding: 16px;
   border-radius: 8px;
   background-color: var(--light-color);
+  color: var(--text-color-dark);
   overflow-x: auto;
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
+/* highlighted words (source <mark>, e.g. "safe.") */
+mark {
+  padding: 0 8px;
+  background-color: var(--brand-primary);
+  color: var(--brand-secondary);
 }
 
 input,
@@ -165,7 +122,18 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+a:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 2px;
+}
+
+/*
+ * buttons
+ * secondary = outline pill (source "Read more", "Click Here!")
+ * primary   = solid white pill (source "Get Involved!")
+ * accent    = solid magenta (source "Subscribe")
+ * Hover on the source only underlines the label.
+ */
 p.button-wrapper {
   margin: 12px 0;
 }
@@ -178,12 +146,13 @@ button.button {
   justify-content: center;
   max-width: 100%;
   margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border: 2px solid currentcolor;
+  border-radius: 9999px;
+  padding: 0.667em 1.333em;
   font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
@@ -191,92 +160,58 @@ button.button {
   white-space: nowrap;
 }
 
+a.button:hover,
+a.button:focus-visible,
+button.button:hover,
+button.button:focus-visible {
+  text-decoration: underline;
+}
+
 a.button[aria-disabled="true"],
 button.button:disabled {
   cursor: not-allowed;
   pointer-events: none;
-}
-
-a.button.primary,
-button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
-}
-
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
-}
-
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+  opacity: 0.6;
 }
 
 a.button.secondary,
 button.button.secondary {
-  border-color: var(--text-color);
+  border-color: currentcolor;
   background-color: transparent;
-  color: var(--text-color);
+  color: var(--brand-white);
 }
 
-a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+a.button.primary,
+button.button.primary {
+  border-color: var(--brand-charcoal);
+  background-color: var(--brand-white);
+  color: var(--brand-charcoal);
 }
 
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
 a.button.accent,
 button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
+  border-color: var(--brand-primary);
+  border-radius: 4px;
+  background-color: var(--brand-primary);
+  color: var(--brand-white);
 }
 
+a.button.primary:hover,
+a.button.secondary:hover,
 a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+button.button.primary:hover,
+button.button.secondary:hover,
+button.button.accent:hover {
+  color: inherit;
 }
 
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
+a.button.primary:hover,
+button.button.primary:hover { color: var(--brand-charcoal); }
+
+a.button.secondary:hover,
+a.button.accent:hover,
+button.button.secondary:hover,
+button.button.accent:hover { color: var(--brand-white); }
 
 main img {
   max-width: 100%;
@@ -295,31 +230,130 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/*
+ * page frame + sections
+ * Source: black page, content column 1110px wide, colored bands sit inside the
+ * column and touch each other (no gap); colored bands have 32px padding.
+ */
+main {
+  padding: var(--page-padding-block) 0;
+}
+
 main > .section {
-  margin: 40px 0;
+  box-sizing: border-box;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0;
 }
 
 main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
-main > .section:first-of-type {
+/* source: heading margin (8px) is the only gap between default content and a block */
+main > .section > div + div {
   margin-top: 0;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+main > .section > .default-content-wrapper > :last-child:not(h1, h2, h3, h4, h5, h6) {
+  margin-bottom: 0;
+}
+
+/* source "medium" intro copy beside a block (signup band) is 20px/30px */
+main > .section.split > .default-content-wrapper p {
+  font-size: var(--body-font-size-l);
+  line-height: 30px;
+}
+
+/* source stacks default content and block with a 32px gap on narrow screens */
+@media (width < 900px) {
+  main > .section.split > div + div {
+    margin-top: 32px;
   }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+/* source container keeps 15px side gutters at every width below 1140px */
+@media (width < 1140px) {
+  main > .section {
+    margin: 0 15px;
+  }
+}
+
+/* section metadata styles */
+main > .section.dark {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+}
+
+main > .section.dark-grey,
+main > .section.magenta,
+main > .section.light-grey,
+main > .section.light,
+main > .section.highlight {
+  padding: var(--section-padding);
+}
+
+main > .section.dark-grey {
+  background-color: var(--brand-charcoal);
+  color: var(--brand-white);
+}
+
+main > .section.magenta {
+  background-color: var(--brand-primary);
+  color: var(--brand-white);
+}
+
+main > .section.light-grey,
+main > .section.light,
+main > .section.highlight {
+  background-color: var(--brand-secondary);
+  color: var(--brand-primary);
+}
+
+main > .section.magenta a:any-link,
+main > .section.dark-grey a:any-link:not(.button) {
+  color: var(--brand-white);
+  text-decoration: underline;
+}
+
+main > .section.magenta a.button.secondary,
+main > .section.dark-grey a.button.secondary {
+  text-decoration: none;
+}
+
+main > .section.light-grey .default-content-wrapper h2,
+main > .section.light-grey .default-content-wrapper h3 {
+  color: var(--brand-primary);
+}
+
+@media (width >= 900px) {
+  main > .section.dark-grey,
+  main > .section.magenta,
+  main > .section.light-grey,
+  main > .section.light,
+  main > .section.highlight {
+    padding: var(--section-padding);
+  }
+
+  /* split: default content beside the block (source signup: 1/3 text, 2/3 form) */
+  main > .section.split {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  main > .section.split > div + div {
+    margin-top: 0;
+  }
+
+  main > .section.split > .default-content-wrapper {
+    grid-column: 1;
+  }
+
+  main > .section.split > div:not(.default-content-wrapper) {
+    grid-column: 2;
+  }
 }
