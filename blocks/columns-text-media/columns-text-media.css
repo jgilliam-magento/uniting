@@ -1,0 +1,88 @@
+/* source: #more .wp-block-columns (text | 30px spacer | media, 32px gaps) */
+.columns-text-media > div {
+  display: flex;
+  flex-direction: column;
+
+  /* mobile: 32px gap + empty spacer column + 32px gap */
+  gap: 64px;
+}
+
+.columns-text-media > div > div {
+  min-width: 0;
+}
+
+/* media images sit in authored paragraphs */
+.columns-text-media .columns-text-media-media-col p {
+  margin: 0;
+}
+
+/* text column */
+.columns-text-media .columns-text-media-text-col h2 {
+  display: inline;
+  margin: 0 0 8px;
+  padding: 0 8px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 41.6px;
+  color: var(--brand-white);
+  background-color: var(--brand-primary);
+}
+
+.columns-text-media .columns-text-media-text-col p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* source has a 27px wp-block-spacer between the inline heading and the copy */
+.columns-text-media .columns-text-media-text-col h2 + p {
+  margin-top: 27px;
+}
+
+.columns-text-media .columns-text-media-text-col > p:first-of-type {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.columns-text-media .columns-text-media-text-col > :last-child {
+  margin-bottom: 0;
+}
+
+/* source links render as white underlined text (inner span overrides the magenta anchor color) */
+.columns-text-media .columns-text-media-text-col a:any-link {
+  color: var(--brand-white);
+  text-decoration: underline;
+}
+
+/* media column: stacked square infographics, 16px apart */
+.columns-text-media .columns-text-media-media-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columns-text-media .columns-text-media-media-col picture {
+  display: block;
+}
+
+.columns-text-media .columns-text-media-media-col img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+@media (width >= 900px) {
+  .columns-text-media > div {
+    flex-direction: row;
+    align-items: flex-start;
+
+    /* 32px gap + 30px spacer column + 32px gap */
+    gap: 94px;
+  }
+
+  .columns-text-media > div > div {
+    flex: 1 1 0;
+  }
+}

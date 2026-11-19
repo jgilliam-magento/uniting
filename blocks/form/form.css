@@ -1,0 +1,149 @@
+/* Source: Gravity Forms signup (#signup-fair-treatment .gform_wrapper) */
+.form form {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--brand-white);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.form .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form .form-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+/* first + last name side by side at every width (49% each, space-between) */
+.form .form-group-fields {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.form .form-group-fields > .form-field {
+  flex: 0 0 49%;
+  min-width: 0;
+  margin: 0 0 8px;
+}
+
+.form .form-field-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.form .form-label {
+  display: block;
+  margin: 0 0 8px;
+  padding: 0;
+  color: var(--brand-white);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.form .form-field-checkbox .form-label {
+  margin: 0;
+}
+
+/* a11y: source red (#c02b0a) on magenta fails contrast (≈1.3:1); light brand tone passes (≈7:1) */
+.form .form-required {
+  color: var(--brand-secondary);
+  font-size: 13.008px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 19.512px;
+}
+
+.form .form-field-grouped > .form-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.form input:not([type='checkbox']),
+.form select,
+.form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--brand-charcoal);
+  border-radius: 4px;
+  padding: 8px;
+  background-color: var(--brand-white);
+  color: var(--brand-black);
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: rgb(117 117 117);
+  opacity: 1;
+}
+
+.form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* footer: 6px margin + 16px padding above the button on the source */
+.form .form-field-submit {
+  margin-top: 6px;
+  padding-top: 16px;
+}
+
+main .form button.button[type='submit'] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  border-radius: 4px;
+  padding: 10.672px 21.328px;
+  background-color: var(--brand-primary);
+  color: var(--brand-white);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* source: hover leaves the label as is (no underline, same background) */
+main .form button.button[type='submit']:hover {
+  text-decoration: none;
+}
+
+.form button[type='submit'][disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.form .form-message {
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  .form .form-group-fields > .form-field {
+    margin: 0;
+  }
+
+  .form input:not([type='checkbox']),
+  .form select,
+  .form textarea {
+    line-height: 20.25px;
+  }
+}

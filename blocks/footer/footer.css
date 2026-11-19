@@ -1,20 +1,135 @@
-footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
-}
+/* Footer: values measured on https://www.fairtreatment.org/ (#wrapper-footer-full) */
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  font-family: var(--body-font-family);
 }
 
 footer .footer p {
   margin: 0;
 }
 
+footer .footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* content inset: same column as the page (1110px; 1140 container with 15px padding) */
+footer .footer .footer-inner {
+  box-sizing: border-box;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* main band (black, 32px padding) */
+footer .footer-main {
+  padding: 32px 0;
+  background-color: var(--brand-black);
+}
+
+/* brand row: logo + social icons (34px spacer above, 28px below) */
+footer .footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 34px 0 28px;
+}
+
+/* explicit size (source 333x68) so the layout is reserved before the image loads */
+footer .footer-logo img {
+  display: block;
+  width: 333px;
+  height: 68px;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* source keeps the icons right-aligned at every width */
+footer .footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+footer .footer-social a:any-link {
+  display: block;
+  width: 24px;
+  height: 24px;
+  line-height: 0;
+}
+
+footer .footer-social img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+footer .footer-social a:focus-visible {
+  outline: 2px solid var(--brand-white);
+  outline-offset: 2px;
+}
+
+/* acknowledgement */
+footer .footer-text {
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--brand-white);
+}
+
+/* partner logos: left and right edges, 58px spacers + 8px figure margin */
+footer .footer-partners {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 66px 0 58px;
+}
+
+/* explicit box (source logos are 90x28 and 90x32, top-aligned) */
+footer .footer-partner img {
+  display: block;
+  width: 90px;
+  height: 32px;
+  object-fit: contain;
+  object-position: left top;
+}
+
+footer .footer-partner:last-child img {
+  object-position: right top;
+}
+
+/* legal bar (charcoal, 32px padding, inline links) */
+footer .footer-legal {
+  padding: 32px 0;
+  background-color: var(--brand-charcoal);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+footer .footer-legal li {
+  display: inline-block;
+  margin-right: 23.8px;
+}
+
+footer .footer-legal a:any-link {
+  color: var(--brand-white);
+  text-decoration: underline;
+}
+
+footer .footer-legal a:hover,
+footer .footer-legal a:focus-visible {
+  color: var(--brand-primary);
+  text-decoration: underline;
+}
+
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer-brand {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
 }

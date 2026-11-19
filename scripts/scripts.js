@@ -10,6 +10,9 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  readBlockConfig,
+  toCamelCase,
+  toClassName,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -143,6 +146,31 @@ function decorateButtons(main) {
 }
 
 /**
+ * Applies authored Section Metadata (style, other keys) to its section and removes the table.
+ * The vendored aem.js decorateSections does not handle section metadata.
+ * @param {HTMLElement} main The main container element
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll(':scope > .section div.section-metadata').forEach((sectionMeta) => {
+    const section = sectionMeta.closest('.section');
+    const meta = readBlockConfig(sectionMeta);
+    Object.entries(meta).forEach(([key, value]) => {
+      if (key === 'style') {
+        String(value).split(',')
+          .map((style) => toClassName(style.trim()))
+          .filter(Boolean)
+          .forEach((style) => section.classList.add(style));
+      } else {
+        section.dataset[toCamelCase(key)] = value;
+      }
+    });
+    const wrapper = sectionMeta.parentElement;
+    sectionMeta.remove();
+    if (wrapper && wrapper !== section && !wrapper.children.length) wrapper.remove();
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -151,6 +179,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
   decorateBlocks(main);
   decorateButtons(main);
 }
@@ -165,6 +194,15 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    // skip-link target
+    if (!main.id) main.id = 'main';
+    main.tabIndex = -1;
+    // LCP: the first image in the first section is the largest above-the-fold image
+    const lcpImg = main.querySelector('.section img');
+    if (lcpImg) {
+      lcpImg.loading = 'eager';
+      lcpImg.fetchPriority = 'high';
+    }
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
